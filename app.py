@@ -122,15 +122,19 @@ def update():
     if request.method == 'POST':
         sid = request.form['sid']
         name = request.form['name']
+        registered = request.form['Registered']
+        allocated = request.form['Allocated']
 
         cursor = mysql.connection.cursor()
         cursor.execute("""
         
         UPDATE ta_table 
-        SET name= %s  
-        WHERE sid = %s      
+        SET name= %s,  
+        Registered = %s,
+        Allocated = %s
+        WHERE SID = %s;      
         
-        """,(name,sid))
+        """,(name,registered,allocated,sid))
 
 
         mysql.connection.commit()

@@ -17,6 +17,8 @@
 
           <th scope="col">SID</th>
           <th scope="col">NAME</th>
+          <th scope="col">Registered</th>
+          <th scope="col">Allocated</th>
           <th scope="col">ACTION</th>
         </tr>
       </thead>
@@ -25,6 +27,8 @@
         <tr>
           <td>{{row['SID']}}</td>
           <td>{{row['name']}}</td>
+          <td>{{row['Registered']}}</td>
+          <td>{{row['Allocated']}}</td>
           <td>
             <a href="/update/{{row['SID']}}" class="btn btn-warning btn-xs" data-toggle="modal"
               data-target="#modaledit{{row['SID']}}">Edit</a>
@@ -58,11 +62,37 @@
                     <input type="text" class="form-control" name="name" value="{{row['name']}}">
 
                   </div>
+                  <div class="form-group">
+                    <label>Registered:</label>
+                    <!-- <input type="text" class="form-control" name="name" value="{{row['name']}}"> -->
+                    <select id="Registered" name="Registered">
+                      <option value = "{{row['Registered']}}">{{row['Registered']}}</option>
+                      <option value = "CSN-512">CSN-512</option>
+                      <option value = "CSN-513">CSN-513</option>
+                    </select>
+
+                  </div>
+                  <div>
+                    <input type = "checkbox" id="same" name = "same" onchange = "setto()"><label>Same as above</label>
+                  </div>
+
+                  
+
+                  <div>
+                  <div class="form-group">
+                    <label>Allocated:</label>
+                    <select id = 'Allocated' name="Allocated">
+                      <option value = "{{row['Allocated']}}">{{row['Allocated']}}</option>
+                      <option value = "CSN-512">CSN-512</option>
+                      <option value = "CSN-513">CSN-513</option>
+                    </select>
+
+                  </div>
 
 
                   <div class="form-group">
 
-                    <button class="btn btn-primary" type="sbumit">Update</button>
+                    <button class="btn btn-primary" type="submit">Update</button>
 
                   </div>
 
@@ -106,5 +136,17 @@
   integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
   integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script>
 
+    function setto(){
+      const cb = document.getElementById('same');
+      if(cb.checked){
+        let val = document.getElementById('Registered').value;
+        // console.log(val);
+        document.getElementById('Allocated').value = val;
+        
+      }
+    }
+    
+</script>
 </html>
